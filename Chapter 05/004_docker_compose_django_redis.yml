@@ -1,0 +1,22 @@
+# Script: 004_docker_compose_django_redis.yml
+
+version: '3'
+
+services:
+  web:
+    image: my-django-api:latest  # Docker image for the Django application
+    ports:
+      - "8000:8000"  # Map container port 8000 to host port 8000
+    volumes:
+      - ./app:/app  # Mount the local `./app` directory to `/app` in the container
+    depends_on:
+      - cache  # Ensure the `cache` service starts before `web`
+    environment:
+      REDIS_URL: "redis://cache:6379/0"  # Redis connection string for the Django app
+
+  cache:
+    image: redis:latest  # Docker image for Redis
+
+# This Docker Compose configuration sets up a Django application with Redis:
+# - `web`: A Django application with a mapped volume for development and Redis configuration.
+# - `cache`: A Redis instance used by the Django application.

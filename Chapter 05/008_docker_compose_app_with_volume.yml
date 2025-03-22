@@ -1,0 +1,16 @@
+# Script: 008_docker_compose_app_with_volume.yml
+
+version: '3'
+
+services:
+  app:
+    image: myapp_image  # Docker image for the application
+    volumes:
+      - mydata_volume:/app/data  # Mount the named volume `mydata_volume` to `/app/data` in the container
+
+volumes:
+  mydata_volume:  # Define a named volume for persistent data storage
+
+# This Docker Compose configuration sets up:
+# - `app`: An application container with a named volume for persistent data storage.
+# - `mydata_volume`: A named volume to persist data between container restarts.

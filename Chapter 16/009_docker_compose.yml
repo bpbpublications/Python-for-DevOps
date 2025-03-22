@@ -1,0 +1,73 @@
+# Script: 009_docker_compose.yml
+
+version: '3.8'
+
+services:
+  # Backend service for the website
+  website-backend:
+    build:
+      context: ./backend/website  # Path to the website backend code
+      dockerfile: Dockerfile      # Dockerfile for building the service
+    ports:
+      - "8000:8000"               # Expose port 8000
+    environment:
+      - DATABASE_URL=postgres://user:password@db:5432/website_db  # Database connection string
+      - REDIS_URL=redis://cache:6379/0                            # Redis connection string
+    depends_on:
+      - db                       # Dependency on the database service
+      - cache                    # Dependency on the Redis service
+
+  # Backend service for the blog
+  blog-backend:
+    build:
+      context: ./backend/blog     # Path to the blog backend code
+      dockerfile: Dockerfile      # Dockerfile for building the service
+    ports:
+      - "8001:8000"               # Expose port 8001
+    environment:
+      - DATABASE_URL=postgres://user:password@db:5432/blog_db     # Database connection string
+      - REDIS_URL=redis://cache:6379/1                            # Redis connection string
+    depends_on:
+      - db                       # Dependency on the database service
+      - cache                    # Dependency on the Redis service
+
+  # Frontend service for the website
+  website-frontend:
+    build:
+      context: ./frontend/website  # Path to the website frontend code
+      dockerfile: Dockerfile       # Dockerfile for building the service
+    ports:
+      - "3000:3000"                # Expose port 3000
+    depends_on:
+      - website-backend            # Dependency on the website backend
+
+  # Frontend service for the blog
+  blog-frontend:
+    build:
+      context: ./frontend/blog     # Path to the blog frontend code
+      dockerfile: Dockerfile       # Dockerfile for building the service
+    ports:
+      - "3001:3000"                # Expose port 3001
+    depends_on:
+      - blog-backend               # Dependency on the blog backend
+
+  # PostgreSQL database service
+  db:
+    image: postgres:13             # Use the official PostgreSQL 13 image
+    environment:
+      POSTGRES_USER: user          # Database username
+      POSTGRES_PASSWORD: password  # Database password
+      POSTGRES_DB: website_db      # Default database name
+    volumes:
+      - db_data:/var/lib/postgresql/data  # Persist database data locally
+
+  # Redis caching service
+  cache:
+    image: redis:6                 # Use the official Redis 6 image
+    command: ["redis-server"]      # Command to start Redis
+    ports:
+      - "6379:6379"                # Expose port 6379
+
+# Define named volumes for persistent data storage
+volumes:
+  db_data:

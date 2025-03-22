@@ -1,0 +1,7 @@
+# Script: 013_check_application_health.yml
+
+- name: Check application health
+  uri:
+    url: http://myapplication/healthcheck  # URL to the health check endpoint of the application
+    return_content: yes  # Retrieve the content from the response
+  register: healthcheck_result  # Store the result in a variable for further processing

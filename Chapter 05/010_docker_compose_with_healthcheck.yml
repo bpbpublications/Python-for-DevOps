@@ -1,0 +1,14 @@
+# Script: 010_docker_compose_with_healthcheck.yml
+
+services:
+  app:
+    image: my-app  # Docker image for the application
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost/ || exit 1"]  # Health check command to test the app's availability
+      interval: 10s  # Interval between health check attempts
+      timeout: 3s  # Timeout for each health check attempt
+      retries: 3  # Number of retries before marking the container as unhealthy
+
+# This Docker Compose configuration sets up:
+# - `app`: A service with a health check to ensure the application is running.
+# - The health check uses `curl` to verify the application responds at `http://localhost/`.

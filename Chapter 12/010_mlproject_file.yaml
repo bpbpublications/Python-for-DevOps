@@ -1,0 +1,16 @@
+# Script: 010_mlproject_file.yaml
+
+name: My Project
+
+conda_env: conda.yaml  # Define the Conda environment to use
+
+entry_points:
+  main:
+    parameters:
+      num_trees: 
+        type: int
+        default: 100  # Default value for the number of trees
+      max_depth: 
+        type: int
+        default: 5  # Default value for the maximum depth
+    command: "python train.py -n {num_trees} -d {max_depth}"  # Command to run the training script

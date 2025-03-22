@@ -1,0 +1,13 @@
+# Script: 011_conda_environment.yaml
+
+name: my_project_env
+
+channels:
+  - conda-forge
+
+dependencies:
+  - python=3.8  # Specify Python version
+  - scikit-learn  # Machine learning library
+  - mlflow  # MLflow for experiment tracking
+  - pip:
+      - -r requirements.txt  # Additional pip dependencies listed in requirements.txt

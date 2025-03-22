@@ -1,0 +1,18 @@
+# Script: 016_compliance_check_workflow.yml
+
+# Example GitHub Actions workflow to run a compliance check script
+name: Compliance Check Workflow
+
+on: [push]  # Trigger the workflow on push events
+
+jobs:
+  compliance-check:
+    runs-on: ubuntu-latest  # Run the job on the latest Ubuntu environment
+    
+    steps:
+      # Step to check out the code repository
+      - uses: actions/checkout@v2
+
+      # Step to run the compliance check script
+      - name: Run Compliance Check Script
+        run: python compliance_check.py  # Replace with the path to your Python script

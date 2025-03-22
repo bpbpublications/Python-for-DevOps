@@ -1,0 +1,13 @@
+# Script: 004_apply_custom_role.yml
+
+- hosts: all
+  roles:
+    # Apply the custom role named "my_custom_role"
+    - my_custom_role
+# Script: 005_execute_python_script.rb
+
+# Execute a Python script using Chef's `execute` resource
+execute 'run_python_script' do
+  command 'python /path/to/script.py' # Replace with the actual path to your Python script
+  action :run
+end

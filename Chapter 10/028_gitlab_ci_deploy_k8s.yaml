@@ -1,0 +1,27 @@
+# Script: 028_gitlab_ci_deploy_k8s.yaml
+
+# GitLab CI configuration for building Docker image and deploying to Kubernetes
+
+stages:
+  - build  # Stage for building the Docker image
+  - deploy  # Stage for deploying to Kubernetes
+
+# Build job
+build:
+  stage: build
+  script:
+    # Build the Docker image for the sample microservice
+    - docker build -t sample-microservice .
+    
+    # Tag the Docker image with the registry URL
+    - docker tag sample-microservice:latest registry.example.com/sample-microservice:latest
+    
+    # Push the Docker image to the Docker registry
+    - docker push registry.example.com/sample-microservice:latest
+
+# Deploy job
+deploy:
+  stage: deploy
+  script:
+    # Apply the Kubernetes deployment configuration to deploy the application
+    - kubectl apply -f kubernetes/deployment.yaml

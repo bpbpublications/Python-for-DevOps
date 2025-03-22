@@ -1,0 +1,15 @@
+# Script: 003_check_file_existence_playbook.yml
+
+- name: Check if a file exists
+  hosts: all
+  tasks:
+    # Use the custom module to check file existence
+    - name: Check file existence
+      custom_file_check:
+        path: "/path/to/your/file"
+      register: result
+
+    # Output the result of the file check
+    - name: Print result
+      debug:
+        msg: "{{ result.message }}"

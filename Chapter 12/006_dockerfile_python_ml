@@ -1,0 +1,12 @@
+# Script: 006_dockerfile_python_ml
+
+FROM python:3.8-slim
+
+# Install necessary Python packages
+RUN pip install numpy pandas scikit-learn joblib
+
+# Copy all files from the current directory to /app in the container
+COPY . /app
+
+# Set the working directory to /app
+WORKDIR /app

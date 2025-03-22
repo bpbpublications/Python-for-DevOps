@@ -1,0 +1,13 @@
+# Script: 007_dockerfile_python_base
+
+# Use Python 3.8 slim image as the base image
+FROM python:3.8-slim
+
+# Install required Python libraries
+RUN pip install numpy pandas scikit-learn joblib
+
+# Copy all files from the current directory to /app in the container
+COPY . /app
+
+# Set the working directory inside the container
+WORKDIR /app

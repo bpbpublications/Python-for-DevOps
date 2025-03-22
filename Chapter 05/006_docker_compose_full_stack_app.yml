@@ -1,0 +1,28 @@
+# Script: 006_docker_compose_full_stack_app.yml
+
+version: '3'
+
+services:
+  frontend:
+    image: my-react-app:latest  # Docker image for the React frontend
+    ports:
+      - "3000:3000"  # Map container port 3000 to host port 3000
+
+  backend:
+    image: my-flask-app:latest  # Docker image for the Flask backend
+    ports:
+      - "5000:5000"  # Map container port 5000 to host port 5000
+    depends_on:
+      - database  # Ensure the `database` service starts before `backend`
+
+  database:
+    image: postgres:latest  # Docker image for PostgreSQL
+    environment:
+      POSTGRES_DB: mydb  # Name of the PostgreSQL database
+      POSTGRES_USER: myuser  # PostgreSQL username
+      POSTGRES_PASSWORD: mypassword  # PostgreSQL password
+
+# This Docker Compose configuration sets up a full-stack application:
+# - `frontend`: A React application running on port 3000.
+# - `backend`: A Flask application running on port 5000 that depends on the database.
+# - `database`: A PostgreSQL instance with configured credentials.

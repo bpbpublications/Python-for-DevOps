@@ -1,0 +1,14 @@
+# Script: 005_gitlab_ci.yml
+
+# Define stages
+stages:
+  - test
+
+# Job definition for running tests with pytest
+pytest:
+  stage: test
+  image: python:3.9  # Use Python 3.9 Docker image
+  before_script:
+    - pip install -r requirements.txt  # Install dependencies from requirements.txt
+  script:
+    - pytest  # Run tests using pytest

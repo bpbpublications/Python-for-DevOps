@@ -1,0 +1,7 @@
+# Script: 012_backup_configuration.yml
+
+- name: Backup current configuration
+  ansible.builtin.copy:
+    src: /path/to/current/config.conf  # Path to the current configuration file
+    dest: /path/to/backup/config.conf.backup  # Path to save the backup
+    remote_src: yes  # Indicate that the source file is already on the remote host

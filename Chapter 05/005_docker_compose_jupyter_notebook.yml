@@ -1,0 +1,14 @@
+# Script: 005_docker_compose_jupyter_notebook.yml
+
+version: '3'
+
+services:
+  jupyter:
+    image: jupyter/datascience-notebook:latest  # Docker image for Jupyter with data science libraries
+    ports:
+      - "8888:8888"  # Map container port 8888 to host port 8888 for accessing Jupyter
+    volumes:
+      - ./notebooks:/home/jovyan/work  # Mount the local `./notebooks` directory to `/home/jovyan/work` in the container
+
+# This Docker Compose configuration sets up a Jupyter Notebook environment:
+# - `jupyter`: A data science-focused Jupyter Notebook container with a volume for storing notebooks.

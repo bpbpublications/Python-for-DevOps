@@ -1,0 +1,13 @@
+# Script: 008_prometheus_alert_rules.yaml
+
+groups:
+  - name: example_rules  # Group name for the alert rules
+    rules:
+      - alert: HighCPULoad  # Alert name
+        expr: 100 - (avg(irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80  # CPU usage expression
+        for: 5m  # Alert fires if the condition persists for 5 minutes
+        labels:
+          severity: warning  # Severity level of the alert
+        annotations:
+          summary: "High CPU load detected"  # Short description of the alert
+          description: "CPU usage on instance {{ $labels.instance }} is above 80%."  # Detailed description of the alert

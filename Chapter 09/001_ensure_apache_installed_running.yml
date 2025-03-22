@@ -1,0 +1,18 @@
+# Script: 001_ensure_apache_installed_running.yml
+
+- name: Ensure Apache is installed and running
+  hosts: webservers
+  become: yes
+  tasks:
+    # Install Apache HTTPD package using yum
+    - name: Install Apache
+      ansible.builtin.yum:
+        name: httpd
+        state: present
+
+    # Ensure Apache service is started and enabled on boot
+    - name: Start Apache service
+      ansible.builtin.service:
+        name: httpd
+        state: started
+        enabled: yes

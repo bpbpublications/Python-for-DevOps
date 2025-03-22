@@ -1,0 +1,14 @@
+# Script: 011_docker_compose_with_resource_limits.yml
+
+services:
+  app:
+    image: my-app  # Docker image for the application
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'  # Limit the container to use a maximum of 0.5 CPU cores
+          memory: 512M  # Limit the container to use a maximum of 512 MB of memory
+
+# This Docker Compose configuration sets up:
+# - `app`: A service with resource limits defined under the `deploy` section.
+# - Limits ensure the container does not exceed 0.5 CPU cores and 512 MB of memory.

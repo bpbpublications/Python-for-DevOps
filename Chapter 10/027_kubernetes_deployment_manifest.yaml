@@ -1,0 +1,23 @@
+# Script: 027_kubernetes_deployment_manifest.yaml
+
+# Kubernetes Deployment manifest for the sample microservice
+
+apiVersion: apps/v1  # Specify the API version for deployments
+kind: Deployment  # Define the kind of object (Deployment)
+metadata:
+  name: sample-microservice  # Name of the deployment
+spec:
+  replicas: 3  # Number of replicas (pods) to run
+  selector:
+    matchLabels:
+      app: sample-microservice  # Label selector to match the pods
+  template:
+    metadata:
+      labels:
+        app: sample-microservice  # Label for the pods
+    spec:
+      containers:
+        - name: sample-microservice  # Name of the container
+          image: sample-microservice:latest  # Image to use for the container
+          ports:
+            - containerPort: 8000  # Expose port 8000 for the container

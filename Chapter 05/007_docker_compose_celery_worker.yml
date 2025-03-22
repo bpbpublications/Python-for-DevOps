@@ -1,0 +1,16 @@
+# Script: 007_docker_compose_celery_worker.yml
+
+version: '3'
+
+services:
+  worker:
+    image: my-celery-worker:latest  # Docker image for the Celery worker
+    environment:
+      CELERY_BROKER_URL: "redis://redis:6379/0"  # Redis broker URL for Celery
+
+  redis:
+    image: redis:latest  # Docker image for Redis
+
+# This Docker Compose configuration sets up a Celery worker with Redis as the message broker:
+# - `worker`: A Celery worker configured to connect to the Redis service.
+# - `redis`: A Redis instance used as the Celery broker.

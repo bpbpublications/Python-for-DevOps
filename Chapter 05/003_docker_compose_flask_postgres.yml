@@ -1,0 +1,26 @@
+# Script: 003_docker_compose_flask_postgres.yml
+
+version: '3'
+
+services:
+  web:
+    image: my-flask-app:latest  # Docker image for the Flask application
+    ports:
+      - "5000:5000"  # Map container port 5000 to host port 5000
+    volumes:
+      - ./app:/app  # Mount the local `./app` directory to `/app` in the container
+    depends_on:
+      - db  # Ensure the `db` service starts before `web`
+    environment:
+      DATABASE_URL: "postgresql://db:5432/mydb"  # Database connection string for the Flask app
+
+  db:
+    image: postgres:latest  # Docker image for PostgreSQL
+    environment:
+      POSTGRES_DB: mydb  # Name of the PostgreSQL database
+      POSTGRES_USER: myuser  # PostgreSQL username
+      POSTGRES_PASSWORD: mypassword  # PostgreSQL password
+
+# This Docker Compose configuration sets up a multi-container application:
+# - `web`: A Flask application with a mapped volume for development and a specified environment variable.
+# - `db`: A PostgreSQL database with credentials and database settings configured.

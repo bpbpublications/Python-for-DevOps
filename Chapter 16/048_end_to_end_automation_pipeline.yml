@@ -1,0 +1,40 @@
+# Script: 048_end_to_end_automation_pipeline.yml
+
+name: End-to-End Automation Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install Dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Provision Infrastructure
+        run: python scripts/provision_infrastructure.py
+
+      - name: Build and Push Docker Images
+        run: python scripts/build_and_push_images.py
+
+      - name: Deploy Services
+        run: python scripts/deploy_services.py
+
+      - name: Configure Monitoring
+        run: python scripts/setup_monitoring.py
+
+      - name: Run Integration Tests
+        run: python scripts/integration_tests.py

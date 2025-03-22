@@ -1,0 +1,8 @@
+# Script: 001_scrape_config_for_python_app.yaml
+
+# Configuration for scraping metrics from a Python application
+scrape_configs:
+  - job_name: 'my_python_app'  # Name of the job for Prometheus to identify
+    static_configs:
+      - targets:
+          - 'localhost:8000'  # The target where the Python app exposes its metrics

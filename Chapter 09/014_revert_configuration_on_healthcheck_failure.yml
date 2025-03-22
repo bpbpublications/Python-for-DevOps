@@ -1,0 +1,11 @@
+# Script: 014_revert_configuration_on_healthcheck_failure.yml
+
+- name: Revert configuration if health check fails
+  block:
+    # Rollback the configuration from the backup if the health check fails
+    - name: Rollback configuration
+      ansible.builtin.copy:
+        src: /path/to/backup/config.conf.backup  # Path to the backup configuration
+        dest: /path/to/current/config.conf  # Path to the current configuration to overwrite
+        remote_src: yes  # Indicate the source file is on the remote host
+  when: healthcheck_result.status != 200  # Trigger the rollback only if the health check fails (status != 200)

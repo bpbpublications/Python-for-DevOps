@@ -1,0 +1,15 @@
+# Script: 007_prometheus_scrape_config.yaml
+
+global:
+  scrape_interval: 15s  # Set the default scrape interval
+
+scrape_configs:
+  - job_name: 'node_exporter'  # Job to scrape metrics from Node Exporter
+    static_configs:
+      - targets:
+          - 'localhost:9100'  # Node Exporter endpoint
+
+  - job_name: 'my_python_app'  # Job to scrape metrics from your Python application
+    static_configs:
+      - targets:
+          - 'localhost:8000'  # Python application's metrics endpoint

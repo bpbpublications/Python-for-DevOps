@@ -1,0 +1,30 @@
+package_config = {
+    "_meta": {
+        "requires": {
+            "python_version": "3.9"  # Required Python version for this configuration
+        },
+        "sources": [
+            {
+                "name": "pypi",  # Package source name
+                "url": "https://pypi.org/simple",  # URL for the package source
+                "verify_ssl": True  # Verify SSL for secure connection
+            }
+        ]
+    },
+    "default": {
+        "requests": {
+            "version": "==2.26.0",  # Specify exact version for `requests` package
+            "markers": "python_version >= '3.6'"  # Applicable for Python 3.6 and above
+        },
+        "flask": {
+            "version": "^2.1.0",  # Specify compatible versions for `flask` package
+            "markers": "python_version >= '3.6'"  # Applicable for Python 3.6 and above
+        }
+    },
+    "develop": {
+        "pytest": {
+            "version": "^6.2.4",  # Specify compatible versions for `pytest` package
+            "markers": "python_version >= '3.6'"  # Applicable for Python 3.6 and above
+        }
+    }
+}
