@@ -1,2 +1,2 @@
-# DevOps for Python
- DevOps for Python, by BPB Publications
+# Python for DevOps
+ Python for DevOps, by BPB Publications
