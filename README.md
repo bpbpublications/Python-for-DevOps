@@ -4,10 +4,10 @@
 
 <img src="https://github.com/vchacko/vchacko/blob/main/img/about/vc_200.png" alt="Varghese Chacko" width="100" height="100" style="border-radius: 50%;" />
 
-Hi, I'm **Varghese Chacko**, a passionate technologist with over 20 years of experience in Python and software development. I specialize in automation, DevOps, AI, and system architecture. I've written this book to share my practical experience and help professionals and students alike master real-world applications of Python in DevOps.
+**Varghese Chacko**, is a passionate technologist with over 20 years of experience in Python and software development. I specialize in automation, DevOps, AI, and system architecture. I've written this book to share my practical experience and help professionals and students alike master real-world applications of Python in DevOps.
 
 Connect with me:  
-🔗 [About Me](https://varghesec.com/) | [GitHub](https://github.com/vchacko) | [LinkedIn](https://www.linkedin.com/in/varghese-chacko/) | [X (Twitter)](https://x.com/varghesechackop) | [Medium](https://medium.com/@varghese-chacko)
+🔗 [About Varghese Chacko](https://varghesec.com/) | [GitHub](https://github.com/vchacko) | [LinkedIn](https://www.linkedin.com/in/varghese-chacko/) | [X (Twitter)](https://x.com/varghesechackop) | [Medium](https://medium.com/@varghese-chacko)
 
 ---
 
